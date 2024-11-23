@@ -1,0 +1,1 @@
+learnt about npm packages and whats actually inside json and to create own script(start project)git 
