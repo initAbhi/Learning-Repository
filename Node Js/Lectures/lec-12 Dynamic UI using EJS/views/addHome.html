@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/output.css">
+    <title>Add home</title>
+  </head>
+  <body>
+    <nav class="bg-red-500 h-6 text-white font-sans text-[8px] flex items-center gap-4 px-4">
+      <a href="/" >Go to Home</a>
+      <a href="/host/add-home">Add Home</a>
+    </nav>
+    <form action="/host/add-home" method="Post">
+    <main class="flex items-center flex-col h-[50vh]">
+      <input class="font-bold my-[30px]" type="text" name="houseName" placeholder="Enter your house name" />
+
+      <button class=" text-white border-none bg-red-500 h-[25px] w-[104px] py-[3px] text-[12px] rounded-[50px] text-center" type="submit">Submit</button>
+    </main>
+    </form>
+  </body>
+</html>
