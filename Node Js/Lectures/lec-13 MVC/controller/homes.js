@@ -16,7 +16,7 @@ exports.postAddHome = (req, res, next) => {
 
 
 exports.getHomes =  (req, res, next) => {
-    let homes = Home.fetchAll()
-    console.log(req.url, req.method, homes);
-    res.render('home', {homes: homes,pageTitle: "Home",tab:"home"})
+    let homes = Home.fetchAll(homes => res.render('home', {homes: homes,pageTitle: "Home",tab:"home"}))
+    // console.log(req.url, req.method, homes);
+    
   }
