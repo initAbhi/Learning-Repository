@@ -8,5 +8,6 @@ const storeController = require("../controller/storeController");
 
 userRouter.get("/", storeController.getHomes);
 userRouter.get("/store/bookings", storeController.getBookings);
+userRouter.get("/store/favouriteList", storeController.getFavouriteList);
 
 module.exports = userRouter;

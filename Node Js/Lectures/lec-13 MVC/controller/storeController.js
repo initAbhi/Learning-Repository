@@ -9,3 +9,6 @@ exports.getHomes =  (req, res, next) => {
   exports.getBookings = (req, res, next) => {
     let homes = Home.fetchAll(homes => res.render('store/bookings', {homes: homes,pageTitle: "Bookings",tab:"bookings"}))    
   }
+  exports.getFavouriteList = (req, res, next) => {
+    let homes = Home.fetchAll(homes => res.render('store/favouriteList', {homes: homes,pageTitle: "Favourites",tab:"favouriteList"}))    
+  }

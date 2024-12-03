@@ -15,6 +15,6 @@ exports.postAddHome = (req, res, next) => {
   }
 
   exports.getHostHomesList = (req, res, next) => {
-    let homes = Home.fetchAll(homes => res.render('host/hostHomesList', {homes: homes,pageTitle: "Host Homes List",tab:"hostHomesList"}))
+    let homes = Home.fetchAll(homes => res.render('host/hostHomesList', {homes: homes,pageTitle: "Host Homes List",tab:"hostHomes"}))
 
   }
