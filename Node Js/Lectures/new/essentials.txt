@@ -1,7 +1,0 @@
-dark{
-    purple - #25064c,
-    purple - #36175E,
-    purple - #a25ce0
-    purple - #a473ce
-    purple - #a669db
-}
