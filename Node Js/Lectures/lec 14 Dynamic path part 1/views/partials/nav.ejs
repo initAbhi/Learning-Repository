@@ -1,9 +1,10 @@
   <!-- Navigation Bar -->
-  <nav class="bg-[#25064c] shadow-md py-4 px-6">
+  <nav class="bg-purple-600 shadow-md py-4 px-6">
     <div class="container mx-auto flex justify-between items-center">
       <h1 class="text-white font-bold text-lg">🏠 Home Manager</h1>
       <div class="space-x-6">
-        <a href="/" class="<%= tab == 'home' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm  transition">Home</a>
+        <a href="/" class="<%= tab == 'airbnb' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm  transition">airbnb</a>
+        <a href="/homeList" class="<%= tab == 'home-list' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm  transition">Home-list</a>
         <a href="/store/bookings" class="<%= tab == 'bookings' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm hover:bg-purple-400 transition">Bookings</a>
         <a href="/store/favouriteList" class="<%= tab == 'favouriteList' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm hover:bg-purple-400 transition">Favourites</a>
         <a href="/host/add-home" class="<%= tab == 'addHome' && "bg-purple-400"%> text-white inline-block text-sm  p-[4px] box-border text-center rounded-sm hover:bg-purple-400 transition">Add Home</a>

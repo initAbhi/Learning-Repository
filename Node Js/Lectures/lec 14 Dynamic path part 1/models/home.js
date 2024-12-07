@@ -11,6 +11,7 @@ module.exports = class Home {
     this.photUrl = photo;
   }
   save() {
+    this.id = Math.random().toString();
     Home.fetchAll(homes => {
         console.log(homes)
         homes.push(this);

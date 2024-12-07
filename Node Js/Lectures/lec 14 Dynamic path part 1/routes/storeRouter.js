@@ -6,8 +6,12 @@ const path = require("path");
 const rootDir = require("../utils/pathUtil");
 const storeController = require("../controller/storeController");
 
-userRouter.get("/", storeController.getHomes);
+userRouter.get("/", storeController.getIndex);
+userRouter.get("/homeList", storeController.getHomes);
 userRouter.get("/store/bookings", storeController.getBookings);
 userRouter.get("/store/favouriteList", storeController.getFavouriteList);
+
+
+userRouter.get("homes/:homeId", storeController.getHomeDetails)
 
 module.exports = userRouter;
