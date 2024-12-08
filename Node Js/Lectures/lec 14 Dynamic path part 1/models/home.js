@@ -8,7 +8,7 @@ module.exports = class Home {
     this.price = price;
     this.location = location;
     this.rating = rating;
-    this.photUrl = photo;
+    this.photoUrl = photo;
   }
   save() {
     this.id = Math.random().toString();
@@ -30,5 +30,11 @@ module.exports = class Home {
         
       callback(!err ? JSON.parse(data) : []);
     });
+  }
+  static findById(homeId, callback){
+    this.fetchAll(homes => {
+      const homeFound = homes.find(home => home.id === homeId)
+      callback(homeFound)
+    })
   }
 };
