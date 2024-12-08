@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="mt-4 sm:mt-0 flex flex-col justify-center gap-5">
-              <button class="bg-purple-600 text-white py-2 px-6 rounded-full text-sm hover:bg-purple-700 shadow-md transition w-full sm:w-auto">Rent</button>
+              <%- include('../partials/favourite', {home:home}) %>
               <a href="/homes/<%= home.id %>"  class="bg-blue-600 text-white py-2 px-6 rounded-full text-sm hover:bg-purple-700 shadow-md transition w-full sm:w-auto">Details</a>
             </div>
           </li>
