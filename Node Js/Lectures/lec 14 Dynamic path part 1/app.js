@@ -22,7 +22,7 @@ app.use(errorController.pageNotFound);
 
 
 
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
   console.log(`your server is loaded at - http://localhost:${port}`);
 });
