@@ -1,5 +1,6 @@
 const { response } = require("express");
 const Home = require("../models/home");
+const Favourites = require("../models/favourites");
 
 exports.getIndex = (req, res, next) => {
   let homes = Home.fetchAll((homes) =>
@@ -31,32 +32,6 @@ exports.getBookings = (req, res, next) => {
   );
 };
 
-exports.getFavouriteList = (req, res, next) => {
-  let homes = Home.fetchFavourites((homes) =>{
-    res.render("store/favouriteList", {
-      homes: homes,
-      pageTitle: "Favourites",
-      tab: "favouriteList",
-    })
-});
-};
-
-exports.addToFavourites = (req, res, next) => {
-  let id = req.body.id;
-
-  Home.findById(id, (home) => {
-    if (!home) {
-      console.log("storecontroller/addToFavourites Home not found");
-    } else {
-      const newhome = new Home(home.houseName,home.price,home.location,home.rating,home.photoUrl,home.id)
-      console.log(newhome)
-  newhome.saveToFavourites()
-     console.log("home found",home)
-    }
-  });
-  res.redirect("/favourites");
-};
-
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;
   Home.findById(homeId, (home) => {
@@ -71,3 +46,43 @@ exports.getHomeDetails = (req, res, next) => {
     }
   });
 };
+
+exports.getFavouriteList = (req, res, next) => {
+  let homes = Favourites.fetchFavourites((homes) => {
+    res.render("store/favouriteList", {
+      homes: homes,
+      pageTitle: "Favourites",
+      tab: "favouriteList",
+    });
+  });
+};
+
+exports.addToFavourites = (req, res, next) => {
+  let currId = req.body.id;
+
+  Favourites.findById(currId, (home) => {
+    if (!home) {
+      console.log("storecontroller/addToFavourites Favourites not found");
+    } else {
+      Favourites.findByIdInFavs(currId, (result) => {
+        if (result) {
+          console.log("already exists");
+        } else {
+          const newhome = new Favourites(
+            home.houseName,
+            home.price,
+            home.location,
+            home.rating,
+            home.photoUrl,
+            home.id
+          );
+          newhome.saveToFavourites();
+          console.log("home found", home);
+        }
+      });
+    }
+  });
+  res.redirect("/favourites");
+};
+
+
