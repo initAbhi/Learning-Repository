@@ -4,20 +4,15 @@ const rootDir = require("../utils/pathUtil");
 const { json } = require("body-parser");
 
 module.exports = class Favourites {
-  constructor(houseName, price, location, rating, photo, id) {
-    this.houseName = houseName;
-    this.price = price;
-    this.location = location;
-    this.rating = rating;
-    this.photoUrl = photo;
-    this.id = id ? id : Math.random().toString();
-  }
-
-  saveToFavourites() {
+  static saveToFavourites(id) {
     Favourites.fetchFavourites((homes) => {
-      homes.push(this);
-      let dataPath = path.join(rootDir, "data", "Favourites.json");
-      fs.writeFile(dataPath, JSON.stringify(homes), (err) => {});
+      if (homes.includes(id)) {
+        console.log("favourites.js : id already exists");
+      } else {
+        homes.push(id);
+        let dataPath = path.join(rootDir, "data", "Favourites.json");
+        fs.writeFile(dataPath, JSON.stringify(homes), (err) => {});
+      }
     });
   }
 
@@ -49,6 +44,3 @@ module.exports = class Favourites {
     });
   }
 };
-
-
-

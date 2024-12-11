@@ -9,9 +9,9 @@ const storeController = require("../controller/storeController");
 userRouter.get("/", storeController.getIndex);
 userRouter.get("/homeList", storeController.getHomes);
 userRouter.get("/store/bookings", storeController.getBookings);
-userRouter.get("/favourites", storeController.getFavouriteList);
+userRouter.get("/favourites", storeController.getFavouriteListNew);
 
 userRouter.get("/homes/:homeId", storeController.getHomeDetails);
-userRouter.post("/favourites", storeController.addToFavourites);
+userRouter.post("/favourites", storeController.addToFavouritesNew);
 
 module.exports = userRouter;

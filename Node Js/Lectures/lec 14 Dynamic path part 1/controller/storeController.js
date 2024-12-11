@@ -48,7 +48,7 @@ exports.getHomeDetails = (req, res, next) => {
 };
 
 exports.getFavouriteList = (req, res, next) => {
-  let homes = Favourites.fetchFavourites((homes) => {
+  Favourites.fetchFavourites((homes) => {
     res.render("store/favouriteList", {
       homes: homes,
       pageTitle: "Favourites",
@@ -85,4 +85,22 @@ exports.addToFavourites = (req, res, next) => {
   res.redirect("/favourites");
 };
 
+exports.getFavouriteListNew = (req, res, next) => {
+  Favourites.fetchFavourites((favHomes) => {
+    // let favIds = favhomes.map(fav => fav.id);
+    Home.fetchAll((fetchedHomes) => {
+      let homes = fetchedHomes.filter((home) => favHomes.includes(home.id));
+      res.render("store/favouriteList", {
+        homes: homes,
+        pageTitle: "Favourites",
+        tab: "favouriteList",
+      });
+    });
+  });
+};
 
+exports.addToFavouritesNew = (req, res, next) => {
+  let currId = req.body.id;
+  Favourites.saveToFavourites(req.body.id);
+  res.redirect("/favourites");
+};
