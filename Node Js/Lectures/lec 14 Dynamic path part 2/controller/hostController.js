@@ -1,6 +1,6 @@
 const Home = require("../models/home");
 
-exports.getAddHome = (req, res, next) => {
+exports.getAddHome = (req, res, next) => {  
   res.render("host/editHome", { pageTitle: "Add Home", tab: "addHome" ,editing:false});
 };
 
@@ -32,7 +32,21 @@ exports.postAddHome = (req, res, next) => {
     req.body.photo
   );
   home.save();
-  res.render("host/homeAdded", { pageTitle: "Home Added", tab: "homeAdded" });
+  // res.render("host/homeAdded", { pageTitle: "Home Added", tab: "homeAdded" });
+  res.redirect("/host/hostHomes");
+};
+
+exports.postUpdateHome = (req, res, next) => {
+  const home = new Home(
+    req.body.houseName,
+    req.body.price,
+    req.body.location,
+    req.body.rating,
+    req.body.photo
+  );
+  home.id = req.body.id
+  home.save();
+  res.redirect("/host/hostHomes");
 };
 
 exports.getHostHomesList = (req, res, next) => {

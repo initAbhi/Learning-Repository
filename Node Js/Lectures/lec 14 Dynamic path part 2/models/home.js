@@ -10,12 +10,16 @@ module.exports = class Home {
     this.location = location;
     this.rating = rating;
     this.photoUrl = photo;
-    this.id = id ? id : Math.random().toString();
   }
-
+  
   save() {
     Home.fetchAll((homes) => {
-      homes.push(this);
+      if(this.id){
+        homes = homes.map(home => home.id === this.id ? this : home)
+      }else{
+        this.id = Math.random().toString();
+        homes.push(this);
+      }
       let dataPath = path.join(rootDir, "data", "homes.json");
       fs.writeFile(dataPath, JSON.stringify(homes), (err) => {});
     });
