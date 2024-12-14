@@ -104,3 +104,11 @@ exports.addToFavouritesNew = (req, res, next) => {
   Favourites.saveToFavourites(req.body.id);
   res.redirect("/favourites");
 };
+
+exports.postDeleteFromFavs = (req, res, next) => {
+  let currId = req.params.homeId;
+  Favourites.deleteById(currId, ()=> console.log("storecontroller.js/delFromFavourites: Removed form favs"))
+  res.redirect("/favourites");
+};
+
+

@@ -49,6 +49,16 @@ exports.postUpdateHome = (req, res, next) => {
   res.redirect("/host/hostHomes");
 };
 
+exports.postDeleteHome = (req, res, next) => {
+  let homeId = req.params.homeId
+  // console.log("delete", homeId);
+  Home.deleteById(homeId,(err) => {
+    console.log(err)
+  })
+  res.redirect("/host/hostHomes");
+};
+
+
 exports.getHostHomesList = (req, res, next) => {
   let homes = Home.fetchAll((homes) =>
     res.render("host/hostHomesList", {

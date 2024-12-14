@@ -37,6 +37,16 @@ module.exports = class Favourites {
     });
   }
 
+    static deleteById(delHomeId, callback) {
+      Favourites.fetchFavourites((favourites) => {
+        const delHomes = favourites.filter((homeId) => delHomeId !== homeId);
+        let dataPath = path.join(rootDir, "data", "Favourites.json");
+        fs.writeFile(dataPath, JSON.stringify(delHomes), (err) => {
+          err && callback(err);
+        });
+      });
+    }
+
   static fetchAll(callback) {
     let dataPath = path.join(rootDir, "data", "homes.json");
     fs.readFile(dataPath, (err, data) => {

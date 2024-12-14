@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/pathUtil");
 const { json } = require("body-parser");
+const Favourites = require("./favourites");
 
 module.exports = class Home {
   constructor(houseName, price, location, rating, photo, id) {
@@ -11,12 +12,12 @@ module.exports = class Home {
     this.rating = rating;
     this.photoUrl = photo;
   }
-  
+
   save() {
     Home.fetchAll((homes) => {
-      if(this.id){
-        homes = homes.map(home => home.id === this.id ? this : home)
-      }else{
+      if (this.id) {
+        homes = homes.map((home) => (home.id === this.id ? this : home));
+      } else {
         this.id = Math.random().toString();
         homes.push(this);
       }
@@ -39,6 +40,16 @@ module.exports = class Home {
     });
   }
 
+  static deleteById(homeId, callback) {
+    this.fetchAll((homes) => {
+      const delHomes = homes.filter((home) => home.id !== homeId);
+      let dataPath = path.join(rootDir, "data", "homes.json");
+      Favourites.deleteById(homeId)
+      fs.writeFile(dataPath, JSON.stringify(delHomes), (err) => {
+        err && callback(err);
+      });
+    });
+  }
   saveToFavourites() {
     Home.fetchFavourites((homes) => {
       homes.push(this);
