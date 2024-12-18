@@ -7,8 +7,7 @@ exports.getAddHome = (req, res, next) => {
 exports.getEditHome = (req, res, next) => {
   const homeId = req.params.homeId;
   const editing = req.query.editing === "true";
-  Home.findById(homeId).then(([homes]) => {
-    let home = homes[0]
+  Home.findById(homeId).then((home) => {
     if (!home) {
       console.log("hostcontroller.js:getEditHome: home nod found");
       res.redirect("/host/hostHomes");

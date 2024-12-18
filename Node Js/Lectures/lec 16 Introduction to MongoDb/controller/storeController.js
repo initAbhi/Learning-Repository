@@ -34,8 +34,7 @@ exports.getBookings = (req, res, next) => {
 
 exports.getHomeDetails = (req, res, next) => {
   const homeId = req.params.homeId;
-  Home.findById(homeId).then(([homes]) => {
-    let home = homes[0]
+  Home.findById(homeId).then((home) => {
     if (!home) {
       res.redirect("/homeList");
     } else {
@@ -75,7 +74,7 @@ exports.addToFavourites = (req, res, next) => {
             home.location,
             home.rating,
             home.photoUrl,
-            home.id
+            home._id
           );
           newhome.saveToFavourites();
           console.log("home found", home);
@@ -90,7 +89,7 @@ exports.getFavouriteListNew = (req, res, next) => {
   Favourites.fetchFavourites((favHomes) => {
     // let favIds = favhomes.map(fav => fav.id);
     Home.fetchAll().then(([fetchedHomes]) => {
-      let homes = fetchedHomes.filter((home) => favHomes.includes(home.id));
+      let homes = fetchedHomes.filter((home) => favHomes.includes(home._id));
       res.render("store/favouriteList", {
         homes: homes,
         pageTitle: "Favourites",
@@ -108,8 +107,8 @@ exports.addToFavouritesNew = (req, res, next) => {
 
 exports.postDeleteFromFavs = (req, res, next) => {
   let currId = req.params.homeId;
-  Favourites.deleteById(currId, ()=> console.log("storecontroller.js/delFromFavourites: Removed form favs"))
+  Favourites.deleteById(currId, () =>
+    console.log("storecontroller.js/delFromFavourites: Removed form favs")
+  );
   res.redirect("/favourites");
 };
-
-

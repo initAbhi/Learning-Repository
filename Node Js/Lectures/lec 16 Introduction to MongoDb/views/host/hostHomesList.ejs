@@ -47,11 +47,11 @@
                     </div>
                 </div>
                 <div class="mt-4 flex flex-col justify-center gap-6 sm:mt-0">
-                    <a href="/host/edit-home/<%= home.id %>?editing=true"
+                    <a href="/host/edit-home/<%= home._id %>?editing=true"
                         class="bg-purple-600 text-white py-2 px-6 rounded-full text-sm hover:bg-purple-700 shadow-md transition w-full sm:w-auto">Edit</a
-                        href="/host/edit-home<%= home.id %>?editing=true">
+                        href="/host/edit-home<%= home._id %>?editing=true">
                     <form
-                        action="/host/delete-home/<%= home.id %>"
+                        action="/host/delete-home/<%= home._id %>"
                         method="POST">
 
                         <button type="submit"

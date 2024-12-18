@@ -25,27 +25,27 @@ module.exports = class Favourites {
 
   static findByIdInFavs(homeId, callback) {
     this.fetchFavourites((homes) => {
-      const homeFound = homes.find((home) => home.id === homeId);
+      const homeFound = homes.find((home) => home._id === homeId);
       callback(homeFound);
     });
   }
 
   static findById(homeId, callback) {
     this.fetchAll((homes) => {
-      const homeFound = homes.find((home) => home.id === homeId);
+      const homeFound = homes.find((home) => home._id === homeId);
       callback(homeFound);
     });
   }
 
-    static deleteById(delHomeId, callback) {
-      Favourites.fetchFavourites((favourites) => {
-        const delHomes = favourites.filter((homeId) => delHomeId !== homeId);
-        let dataPath = path.join(rootDir, "data", "Favourites.json");
-        fs.writeFile(dataPath, JSON.stringify(delHomes), (err) => {
-          err && callback(err);
-        });
+  static deleteById(delHomeId, callback) {
+    Favourites.fetchFavourites((favourites) => {
+      const delHomes = favourites.filter((homeId) => delHomeId !== homeId);
+      let dataPath = path.join(rootDir, "data", "Favourites.json");
+      fs.writeFile(dataPath, JSON.stringify(delHomes), (err) => {
+        err && callback(err);
       });
-    }
+    });
+  }
 
   static fetchAll(callback) {
     let dataPath = path.join(rootDir, "data", "homes.json");
