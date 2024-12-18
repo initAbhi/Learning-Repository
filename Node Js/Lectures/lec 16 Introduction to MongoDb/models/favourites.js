@@ -2,25 +2,27 @@ const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/pathUtil");
 const { json } = require("body-parser");
+const { getDb } = require("../utils/databaseUtil");
 
 module.exports = class Favourites {
   static saveToFavourites(id) {
-    Favourites.fetchFavourites((homes) => {
+
+    const db = getDb();
+    // console.log()
+    Favourites.fetchFavourites().then((homes) => {
+      homes = homes.map(home => home.id)
       if (homes.includes(id)) {
         console.log("favourites.js : id already exists");
       } else {
-        homes.push(id);
-        let dataPath = path.join(rootDir, "data", "Favourites.json");
-        fs.writeFile(dataPath, JSON.stringify(homes), (err) => {});
+        return db.collection('favourites').insertOne({id: id})
       }
     });
   }
 
-  static fetchFavourites(callback) {
-    let dataPath = path.join(rootDir, "data", "Favourites.json");
-    fs.readFile(dataPath, (err, data) => {
-      callback(!err ? JSON.parse(data) : []);
-    });
+  static fetchFavourites() {
+   const db = getDb();
+  //  db.collection('favourites').find().toArray().then(res => console.log(res))
+   return db.collection('favourites').find().toArray();
   }
 
   static findByIdInFavs(homeId, callback) {
@@ -38,19 +40,15 @@ module.exports = class Favourites {
   }
 
   static deleteById(delHomeId, callback) {
-    Favourites.fetchFavourites((favourites) => {
-      const delHomes = favourites.filter((homeId) => delHomeId !== homeId);
-      let dataPath = path.join(rootDir, "data", "Favourites.json");
-      fs.writeFile(dataPath, JSON.stringify(delHomes), (err) => {
-        err && callback(err);
-      });
-    });
+    const db = getDb();
+      return db
+            .collection("favourites")
+            .deleteOne({ id: delHomeId });
   }
 
-  static fetchAll(callback) {
-    let dataPath = path.join(rootDir, "data", "homes.json");
-    fs.readFile(dataPath, (err, data) => {
-      callback(!err ? JSON.parse(data) : []);
-    });
+  static fetchAll() {
+    const db = getDb();
+    // db.collection('homes').find().toArray().then(res => console.log(res))
+    return db.collection("homes").find().toArray();
   }
 };

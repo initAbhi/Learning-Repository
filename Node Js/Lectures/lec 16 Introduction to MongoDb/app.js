@@ -7,6 +7,7 @@ const rootDir = require("./utils/pathUtil");
 const errorController = require("./controller/errors");
 const { createConnection } = require("./utils/databaseUtil");
 const Home = require("./models/home");
+const Favourites = require("./models/favourites");
 
 
 const app = express();
@@ -23,9 +24,9 @@ app.use(errorController.pageNotFound);
 const port = 3001;
 
 createConnection().then(() => {
-app.listen(port, () => {
-  console.log(`your server is loaded at - http://localhost:${port}`);
-});
+  app.listen(port, () => {
+    console.log(`your server is loaded at - http://localhost:${port}`);
+  });
 })
 
 

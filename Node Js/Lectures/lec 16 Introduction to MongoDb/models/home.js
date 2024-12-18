@@ -38,7 +38,7 @@ module.exports = class Home {
 
   static fetchAll() {
     const db = getDb();
-    // console.log("fectch all - ",db.collection('homes').find().toArray)
+    // db.collection('homes').find().toArray().then(res => console.log(res))
     return db.collection("homes").find().toArray();
   }
 
