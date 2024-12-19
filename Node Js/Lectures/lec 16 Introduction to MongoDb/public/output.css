@@ -666,20 +666,12 @@ video {
   display: none;
 }
 
-.h-5 {
-  height: 1.25rem;
-}
-
 .h-96 {
   height: 24rem;
 }
 
 .h-\[50vh\] {
   height: 50vh;
-}
-
-.w-6 {
-  width: 1.5rem;
 }
 
 .w-full {
