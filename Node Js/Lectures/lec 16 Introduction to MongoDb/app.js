@@ -25,8 +25,10 @@ const port = 3001;
 
 createConnection().then(() => {
   app.listen(port, () => {
+    console.log(2)
     console.log(`your server is loaded at - http://localhost:${port}`);
   });
 })
+console.log(3)
 
 

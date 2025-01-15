@@ -1,17 +1,25 @@
 const express = require("express");
-// const { connectDb } = require("./utils/dbConnection");
 require("dotenv").config();
-const {getdb, connectDb} = require("./utils/dbConnection.js");
+const {connectDb } = require("./utils/dbConnection.js");
+const userRouter = require("./routes/userRouter.js")
+
+
+const cookieParser = require("cookie-parser")
+app.use(cookieParser());
+
 
 const app = express();
 const PORT = process.env.PORT;
-    
-let db;
-app.listen(PORT, () => {
-  connectDb();
+connectDb();
+app.set('view engine', 'ejs');
+app.set("views", "views");
+
+
+app.use(express.urlencoded({extended: true}))
+app.use(express.json());
+
+app.use("/", userRouter)
+
+app.listen(PORT, async () => {
   console.log(`Server is running on port http://localhost:${PORT}`);
 });
-db = getdb;
-db.collection("test").findOne({})
-
-
