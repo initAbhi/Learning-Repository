@@ -10,11 +10,16 @@ const createConnection = async () => {
 };
 
 const getDb = () => {    
-    if (!_db) {
-        console.log("connection not established");
-    }
+      if (!_db) {
+          console.log("connection not established");
+      }
     return _db;
 }
 
 exports.getDb = getDb;
 exports.createConnection = createConnection;
+
+
+
+
+

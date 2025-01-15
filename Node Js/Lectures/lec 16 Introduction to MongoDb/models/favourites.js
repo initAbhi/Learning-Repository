@@ -8,7 +8,6 @@ module.exports = class Favourites {
   static saveToFavourites(id) {
 
     const db = getDb();
-    // console.log()
     Favourites.fetchFavourites().then((homes) => {
       homes = homes.map(home => home.id)
       if (homes.includes(id)) {
@@ -21,7 +20,6 @@ module.exports = class Favourites {
 
   static fetchFavourites() {
    const db = getDb();
-  //  db.collection('favourites').find().toArray().then(res => console.log(res))
    return db.collection('favourites').find().toArray();
   }
 
