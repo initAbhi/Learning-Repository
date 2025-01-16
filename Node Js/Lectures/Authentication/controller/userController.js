@@ -1,9 +1,12 @@
+const { setUser,verifyUser } = require("../middlewares/authentication.js");
 const { User } = require("../models/User.js");
 
+const secret = process.env.JWT_SECRET;
+
 const getUsers = async (req, res, next) => {
+  let {email} = verifyUser(req.cookies.id)
   let users = await User.find({});
-  let {id} = req.cookies
-  res.render("home", { username: id.username, users });
+  res.render("home", { username: email, users });
 };
 
 const addUser = async (req, res, next) => {
@@ -31,8 +34,8 @@ const login = async (req, res, next) => {
   if (!userExists) {
     res.send("wrong credentials");
   } else {
-    res.cookie("id", userExists);
-    // res.send(`logged in as ${userExists.username}`);
+    const token = setUser(userExists)
+    res.cookie("id", token);
     res.redirect("/");
   }
 };
