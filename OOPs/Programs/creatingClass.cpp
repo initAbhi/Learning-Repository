@@ -3,7 +3,7 @@
 
 using namespace std;
 
-class teacher {
+class Teacher {
     public:
     string name;
     int age;
@@ -19,7 +19,7 @@ class teacher {
 
 int main(){
     cout<< "Hello, World!" << endl;
-    teacher t1;
+    Teacher t1;
     t1.changeDept("Math");
     cout<<t1.dept;
 }
