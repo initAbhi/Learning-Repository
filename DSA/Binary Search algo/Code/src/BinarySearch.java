@@ -1,8 +1,8 @@
 public class BinarySearch {
     public static void main(String[] args) {
         //Binary Search Algorithm
-        int[] arr = {2,3,6,8,10,19,34,55,56,67,99};
-        int target = 56;
+        int[] arr = {2,3,6,8,8,10,19,34,55,56,56,56,67,99};
+        int target = 8;
 
 
         System.out.println(binarySearch(arr, target));

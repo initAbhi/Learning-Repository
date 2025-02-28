@@ -1,7 +1,7 @@
 public class SmallestLetterGreaterThanTarget {
     public static void main(String[] args) {
-        char[] arr = {'e','e', 'g','g'};
-        char target = 'g';
+        char[] arr = {'e','e','e','e','e','e','n','n','n','n'};
+        char target = 'e';
         System.out.println(ceilingChar(arr, target));
 
     }
