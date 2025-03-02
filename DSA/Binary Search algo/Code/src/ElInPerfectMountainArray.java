@@ -1,7 +1,7 @@
-public class ElInMountainArray {
+public class ElInPerfectMountainArray {
     public static void main(String[] args) {
-        int[] nums = {2,3,4,6,8,19,45,37,23,7,2,3,1};
-        int target = 23;
+        int[] nums = {19,45,37,45,7,2,3};
+        int target = 45;
         System.out.println(peakIndexInMountainArray(nums, target));
     }
     static  int peakIndexInMountainArray(int[] nums,int target){
