@@ -10,6 +10,7 @@ export default function Home() {
       <div className="main-container">
         <Sidebar />
         <Dashboard />
+        {/* yes */}
       </div>
     </div>
   );
