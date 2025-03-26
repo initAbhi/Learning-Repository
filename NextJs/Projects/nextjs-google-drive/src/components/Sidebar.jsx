@@ -13,9 +13,11 @@ const Sidebar = ({onHandleNewUpload}) => {
         function handleOnClick() {
             open()
         }
-        return (<button onClick={handleOnClick} className='new-button'>New</button>)
+        return (
+        
+        <button onClick={handleOnClick} className="flex items-center justify-center px-8 py-4 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-5 w-50 ">+ Upload</button>)
     }}</CldUploadWidget>
-    <ul>
+    {/* <ul>
         <li>Home</li>
         <li>Activity</li>
         <li>Workspaces</li>
@@ -30,7 +32,7 @@ const Sidebar = ({onHandleNewUpload}) => {
         <li>Spam</li>        
         <li>Trash</li>        
         <li>Storage</li>        
-    </ul>
+    </ul> */}
   </article>
   )
 }

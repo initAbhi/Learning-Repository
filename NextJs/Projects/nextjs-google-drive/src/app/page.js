@@ -3,12 +3,28 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import Dashboard from "@/components/dashboard";
 import Sidebar from "@/components/Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
 
 export default function Home() {
   const [assets, setAssets] = useState([])
-  console.log(assets)
-
+  const [searchTerm, setSearchTerm] = useState('')
+  console.log(searchTerm)
+  const getData = async() => {
+    try{
+      const data = await fetch(`/api/assets?${searchTerm}`);
+      const media = await data.json();
+      console.log(media)
+      setAssets(media)
+    }catch(error){
+      console.log(error)
+    }
+  }
+  
+  useEffect(() => {
+    getData();
+  },[searchTerm])
+  
   const onHandleNewUpload = (asset) => {
     setAssets(prev => [asset, ...prev])
   }
@@ -18,8 +34,7 @@ export default function Home() {
       <Header />
       <div className="main-container">
         <Sidebar onHandleNewUpload={onHandleNewUpload} />
-        <Dashboard />
-        {/* yes */}
+        <Dashboard assets={assets} searchTerm={searchTerm} setSearchTerm={setSearchTerm}  />
       </div>
     </div>
   );
